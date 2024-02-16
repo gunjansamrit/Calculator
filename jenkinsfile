@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE_NAME = 'calculator'
+        DOCKER_IMAGE_NAME = 'gsamrit/calculator:latest'
         GITHUB_REPO_URL = 'https://github.com/gunjansamrit/Calculator.git'
     }
 
@@ -19,7 +19,7 @@ pipeline {
             steps {
                 script {
                     // Build Docker image
-                    docker.build("${DOCKER_IMAGE_NAME}", '.')
+                    docker.build(DOCKER_IMAGE_NAME, '.')
                 }
             }
         }
@@ -28,8 +28,7 @@ pipeline {
             steps {
                 script{
                     docker.withRegistry('', 'DockerCredentialId') {
-                    sh 'docker tag calculator gsamrit/calculator:latest'
-                    sh 'docker push gsamrit/calculator'
+                        docker.image(DOCKER_IMAGE_NAME).push('latest')
                     }
                  }
             }

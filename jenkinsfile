@@ -5,6 +5,7 @@ pipeline {
         GITHUB_REPO_URL = 'https://github.com/gunjansamrit/Calculator.git'
         DOCKER_CREDENTIAL_ID=credentials('DockerCredentialId')
         ANSIBLE_VERSION= 'ansible'
+        PATH = "$PATH:/usr/local/opt/maven/bin"
     }
 
     stages {

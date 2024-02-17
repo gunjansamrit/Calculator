@@ -1,11 +1,13 @@
-# Use a Java runtime as a base image
-FROM openjdk:11-jre-slim
-
-# Set the working directory inside the container
+# Build Stage
+FROM maven:3.8.4-openjdk-17 AS build
 WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean install -X
 
-# Copy the compiled Java executable JAR file from the target directory into the container
-COPY target/Calculator-0.0.1-SNAPSHOT.jar /app/Calculator-0.0.1-SNAPSHOT.jar
-
-# Command to run the Java application
+# Package Stage
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY --from=build /app/target/Calculator-0.0.1-SNAPSHOT.jar /app/Calculator-0.0.1-SNAPSHOT.jar
+EXPOSE 8080
 CMD ["java", "-jar", "Calculator-0.0.1-SNAPSHOT.jar"]

@@ -3,6 +3,7 @@ pipeline {
     environment {
         DOCKER_IMAGE_NAME = 'gsamrit/calculator:latest'
         GITHUB_REPO_URL = 'https://github.com/gunjansamrit/Calculator.git'
+        DOCKER_CREDENTIAL_ID=credentials('DockerCredentialId');
     }
 
     stages {
@@ -27,8 +28,7 @@ pipeline {
         stage('Push Docker Images') {
             steps {
                 script{
-                    docker.withRegistry('', 'DockerCredentialId') {
-                        docker.image(DOCKER_IMAGE_NAME).push('latest')
+                    sh 'echo $DOCKER_CREDENTIAL_ID_PSW | docker login -u $DOCKER_CREDENTIAL_ID_USR --password-stdin'
                     }
                  }
             }

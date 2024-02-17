@@ -4,6 +4,7 @@ pipeline {
         DOCKER_IMAGE_NAME = 'gsamrit/calculator:latest'
         GITHUB_REPO_URL = 'https://github.com/gunjansamrit/Calculator.git'
         DOCKER_CREDENTIAL_ID=credentials('DockerCredentialId')
+        ANSIBLE_VERSION= 'ansible'
     }
 
     stages {
@@ -29,6 +30,7 @@ pipeline {
             steps {
                 script {
                     sh "echo $DOCKER_CREDENTIAL_ID_PSW | docker login -u $DOCKER_CREDENTIAL_ID_USR --password-stdin"
+                    sh 'docker push ${DOCKER_IMAGE_NAME}'
                 }
             }
         }

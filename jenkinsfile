@@ -32,16 +32,17 @@ pipeline {
                     }
                  }
             }
+
+
+        stage('Run Ansible Playbook') {
+                   steps {
+                       script {
+                          ansiblePlaybook installation: 'ansible', playbook: 'deploy.yml', vaultTmpPath: ''
+                        )
+                      }
+                  }
+               }
         }
 
-    stage('Run Ansible Playbook') {
-           steps {
-               script {
-                  ansiblePlaybook installation: 'ansible', playbook: 'deploy.yml', vaultTmpPath: ''
-                )
-              }
-          }
-       }
 
-    }
 }

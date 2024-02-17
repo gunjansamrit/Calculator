@@ -32,7 +32,13 @@ pipeline {
                 }
             }
         }
-
+        stage('New something'){
+            steps{
+                script{
+                    sh 'echo Hello'
+                }
+            }
+        }
         stage('Run Ansible Playbook') {
             steps {
                 script {

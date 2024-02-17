@@ -17,21 +17,19 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    // Build Docker image
-                    docker.build(DOCKER_IMAGE_NAME, '.')
-                }
-            }
-        }
+        //stage('Build Docker Image') {
+         //   steps {
+           //     script {
+             //       // Build Docker image
+               //     docker.build(DOCKER_IMAGE_NAME, '.')
+                //}
+            //}
+        //}
 
         stage('Push Docker Images') {
             steps {
-                script {
                     sh "echo $DOCKER_CREDENTIAL_ID_PSW | docker login -u $DOCKER_CREDENTIAL_ID_USR --password-stdin"
                     sh 'docker push ${DOCKER_IMAGE_NAME}'
-                }
             }
         }
 

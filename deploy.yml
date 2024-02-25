@@ -4,13 +4,13 @@
   tasks:
     - name: Pull Docker image from Docker Hub
       docker_image:
-        name: "gsamrit/calculatorcicd:latest"
+        name: "gsamrit/calculator:latest"
         source: pull
 
     - name: Run Docker container
       docker_container:
         name: calculator-container
-        image: "gsamrit/calculatorcicd:latest"
+        image: "gsamrit/calculator:latest"
         state: started
         ports:
           - "8082:8082"

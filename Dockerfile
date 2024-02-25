@@ -9,5 +9,5 @@ RUN mvn clean install -X
 FROM openjdk:17-jdk-slim
 WORKDIR /app
 COPY --from=build /app/target/Calculator-0.0.1-SNAPSHOT.jar /app/Calculator-0.0.1-SNAPSHOT.jar
-EXPOSE 8080
+EXPOSE 8082
 CMD ["java", "-jar", "Calculator-0.0.1-SNAPSHOT.jar"]

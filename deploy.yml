@@ -8,4 +8,4 @@
         source: pull
 
     - name: Run Docker container
-      command: docker run -d  -p 8082:8082 gsamrit/calculator:latest
+      command: docker run -dit  -p 8082:8082 gsamrit/calculator:latest

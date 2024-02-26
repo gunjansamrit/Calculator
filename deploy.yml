@@ -8,9 +8,4 @@
         source: pull
 
     - name: Run Docker container
-      docker_container:
-        name: calculator-container
-        image: "gsamrit/calculator:latest"
-        state: started
-        ports:
-          - "8082:8082"
+      command: docker run -d --name calculator-container -p 8082:8082 gsamrit/calculator:latest
